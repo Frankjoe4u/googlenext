@@ -3,7 +3,10 @@ import { PrismaLibSql } from "@prisma/adapter-libsql";
 
 const make = () =>
   new PrismaClient({
-    adapter: new PrismaLibSql({ url: process.env.DATABASE_URL ?? "file:./dev.db" }),
+    adapter: new PrismaLibSql({
+      url: process.env.DATABASE_URL ?? "file:./dev.db",
+      authToken: process.env.TURSO_AUTH_TOKEN,
+    }),
   });
 
 const g = globalThis as unknown as { prisma?: PrismaClient };
