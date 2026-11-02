@@ -1,0 +1,20 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model User {
+  id        String   @id @default(cuid())
+  name      String?
+  email     String   @unique
+  password  String?  // null for Google-only users
+  image     String?
+  role      String   @default("USER")
+  provider  String   @default("credentials") // credentials | google
+  createdAt DateTime @default(now())
+  lastLogin DateTime @default(now())
+}
