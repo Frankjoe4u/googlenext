@@ -9,6 +9,11 @@
   --animate-float-slow: float 16s ease-in-out infinite reverse;
   --animate-shake: shake 0.4s ease-in-out;
   --animate-gradient: gradient 6s ease infinite;
+  --animate-marquee: marquee 35s linear infinite;
+  --animate-blink: blink 1s steps(2) infinite;
+  --animate-grow-x: grow-x 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
+  --animate-spin-slow: spin 5s linear infinite;
+  --animate-bob: bob 4s ease-in-out infinite;
 
   @keyframes fade-up {
     from { opacity: 0; transform: translateY(18px); }
@@ -31,8 +36,31 @@
     0%, 100% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
   }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  @keyframes blink {
+    50% { opacity: 0; }
+  }
+  @keyframes grow-x {
+    from { transform: scaleX(0); }
+    to { transform: scaleX(1); }
+  }
+  @keyframes bob {
+    0%, 100% { transform: translateY(0) rotate(-1deg); }
+    50% { transform: translateY(-10px) rotate(1deg); }
+  }
 }
 
 @layer base {
   html { color-scheme: dark; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
