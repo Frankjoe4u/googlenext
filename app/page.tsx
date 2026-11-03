@@ -3,11 +3,19 @@ import { auth } from "@/auth";
 import { APP_NAME } from "@/lib/config";
 import { courses } from "@/lib/courses";
 
-const path = [
-  { n: "01", icon: "🎨", title: "Build the face", text: "Structure and style real pages people enjoy using.", stack: ["HTML", "CSS", "Tailwind", "JavaScript"] },
-  { n: "02", icon: "⚡", title: "Level up", text: "Add types and components, then ship full apps.", stack: ["TypeScript", "React", "Next.js"] },
-  { n: "03", icon: "🗄️", title: "Own the data", text: "Store, query and protect what your app knows.", stack: ["MongoDB", "Supabase", "PostgreSQL", "Node.js"] },
-  { n: "04", icon: "🚀", title: "Ship it", text: "Version, collaborate and put it live on the internet.", stack: ["Git & GitHub", "Deploy"] },
+const journey = [
+  { n: "1", icon: "🌱", title: "Start simple", text: "Learn the basics and make your first web page.", stack: ["HTML", "CSS", "Git"] },
+  { n: "2", icon: "✨", title: "Make it move", text: "Add buttons, clicks and fun little interactions.", stack: ["JavaScript", "Tailwind"] },
+  { n: "3", icon: "🧠", title: "Level up", text: "Build with React and Next.js, with TypeScript to help.", stack: ["TypeScript", "React", "Next.js"] },
+  { n: "4", icon: "💾", title: "Save your stuff", text: "Store your data and show your work to the world.", stack: ["MongoDB", "Supabase", "PostgreSQL"] },
+];
+
+const checklist = [
+  { text: "Sketched my pages on paper", done: true },
+  { text: "Wrote the HTML for my page", done: true },
+  { text: "Added colors and fonts with CSS", done: true },
+  { text: "Make the contact form work", done: false },
+  { text: "Show it to my class!", done: false },
 ];
 
 export default async function Home() {
@@ -25,13 +33,13 @@ export default async function Home() {
               {APP_NAME}
             </span>
           </h1>
-          <p className="mt-5 max-w-md animate-fade-up text-lg text-slate-400 [animation-delay:150ms]">
-            Learn the modern web stack, one real project at a time. From your first line of HTML to a live full-stack app.
+          <p className="mt-5 max-w-md animate-fade-up text-lg text-slate-300 [animation-delay:150ms]">
+            Learn to build websites by making small projects. No pressure, no experience needed. Just a little progress every day.
           </p>
           <div className="mt-8 flex animate-fade-up flex-wrap gap-3 [animation-delay:300ms]">
             {session ? (
               <Link href="/dashboard" className="rounded-xl bg-linear-to-r from-indigo-500 to-fuchsia-500 px-6 py-3 font-semibold shadow-lg shadow-indigo-500/30 transition hover:-translate-y-0.5 active:scale-95">
-                Go to your dashboard →
+                Go to my dashboard →
               </Link>
             ) : (
               <>
@@ -46,35 +54,45 @@ export default async function Home() {
           </div>
         </div>
 
-        {/* Animated code window */}
-        <div className="animate-fade-up [animation-delay:250ms]">
-          <div className="motion-safe:animate-bob overflow-hidden rounded-2xl border border-white/10 bg-slate-900/80 shadow-2xl shadow-indigo-500/10 backdrop-blur">
-            <div className="flex items-center gap-2 border-b border-white/10 px-4 py-3">
-              <span className="size-3 rounded-full bg-rose-400" />
-              <span className="size-3 rounded-full bg-amber-400" />
-              <span className="size-3 rounded-full bg-emerald-400" />
-              <span className="ml-3 text-xs text-slate-500">student.ts</span>
+        {/* Student project notebook */}
+        <div className="relative animate-fade-up [animation-delay:250ms]">
+          <div className="motion-safe:animate-bob rounded-3xl border border-white/10 bg-white/5 p-6 shadow-2xl shadow-indigo-500/10 backdrop-blur">
+            <p className="text-xs font-semibold uppercase tracking-widest text-indigo-300">📓 My first project</p>
+            <h2 className="mt-1 text-xl font-bold">My Class Portfolio Site</h2>
+
+            <div className="mt-4">
+              <div className="mb-1.5 flex justify-between text-xs text-slate-400">
+                <span>Progress</span><span>3 of 5 done</span>
+              </div>
+              <div className="h-2.5 overflow-hidden rounded-full bg-white/10">
+                <div className="h-full w-3/5 origin-left rounded-full bg-linear-to-r from-indigo-400 via-fuchsia-400 to-cyan-400 motion-safe:animate-grow-x" />
+              </div>
             </div>
-            <pre className="p-5 font-mono text-sm leading-7">
-              <code>
-                <span style={{ animationDelay: "600ms" }} className="block animate-fade-up"><span className="text-fuchsia-400">const</span> <span className="text-cyan-300">student</span> = <span className="text-amber-300">&quot;you&quot;</span>;</span>
-                <span style={{ animationDelay: "1100ms" }} className="block animate-fade-up"><span className="text-cyan-300">student</span>.<span className="text-indigo-300">learn</span>([<span className="text-amber-300">&quot;HTML&quot;</span>, <span className="text-amber-300">&quot;TS&quot;</span>, <span className="text-amber-300">&quot;React&quot;</span>]);</span>
-                <span style={{ animationDelay: "1600ms" }} className="block animate-fade-up"><span className="text-cyan-300">student</span>.<span className="text-indigo-300">build</span>(<span className="text-amber-300">&quot;something real&quot;</span>);</span>
-                <span style={{ animationDelay: "2100ms" }} className="block animate-fade-up text-slate-500">{"// "}🎓 graduate from {APP_NAME}<span className="ml-1 inline-block h-4 w-2 translate-y-0.5 bg-indigo-400 motion-safe:animate-blink" /></span>
-              </code>
-            </pre>
+
+            <ul className="mt-5 space-y-2.5">
+              {checklist.map((item, i) => (
+                <li key={item.text} style={{ animationDelay: `${600 + i * 250}ms` }} className="flex animate-fade-up items-center gap-3 text-sm">
+                  <span className={`grid size-6 shrink-0 place-items-center rounded-full text-xs font-bold ${item.done ? "bg-emerald-400 text-slate-900" : "border border-dashed border-white/30 text-transparent"}`}>✓</span>
+                  <span className={item.done ? "text-slate-400 line-through" : "text-slate-100"}>{item.text}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div style={{ animationDelay: "1900ms" }} className="absolute -bottom-6 -right-2 w-48 rotate-3 animate-fade-up rounded-md bg-yellow-200 p-3 text-sm font-medium text-slate-800 shadow-xl sm:-right-6">
+            Small steps every day. You&apos;ve got this! ✏️
           </div>
         </div>
       </section>
 
       {/* Marquee */}
       <section aria-label="Courses" className="animate-fade-in [animation-delay:500ms]">
-        <p className="mb-4 text-center text-xs uppercase tracking-[0.3em] text-slate-500">What you will learn</p>
+        <p className="mb-4 text-center text-xs uppercase tracking-[0.3em] text-slate-500">What you can learn</p>
         <div className="overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_12%,black_88%,transparent)]">
           <div className="flex w-max gap-3 motion-safe:animate-marquee hover:[animation-play-state:paused]">
             {loop.map((c, i) => (
-              <span key={i} className="flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm backdrop-blur">
-                <span className={`grid size-6 place-items-center rounded-md bg-linear-to-br ${c.gradient} text-[9px] font-bold text-white`}>{c.tag.slice(0, 3)}</span>
+              <span key={i} className="flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm">
+                <span className="text-base">{c.emoji}</span>
                 {c.name}
               </span>
             ))}
@@ -82,20 +100,20 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Learning path */}
+      {/* Journey */}
       <section>
         <div className="text-center">
-          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Your path from zero to shipped</h2>
-          <p className="mx-auto mt-3 max-w-lg text-slate-400">Four stages, each building on the last, so you always know what to learn next.</p>
+          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Your learning journey</h2>
+          <p className="mx-auto mt-3 max-w-lg text-slate-400">Four friendly steps. Go at your own speed and build something at every stage.</p>
         </div>
         <div className="relative mt-12">
           <div className="absolute left-[12.5%] right-[12.5%] top-7 hidden h-0.5 origin-left bg-linear-to-r from-indigo-500 via-fuchsia-500 to-cyan-400 motion-safe:animate-grow-x lg:block" />
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {path.map((s, i) => (
+            {journey.map((s, i) => (
               <div
                 key={s.n}
                 style={{ animationDelay: `${i * 150}ms` }}
-                className="group relative animate-fade-up rounded-2xl border border-white/10 bg-white/5 p-5 pt-9 backdrop-blur transition duration-300 hover:-translate-y-1.5 hover:border-indigo-400/40 hover:bg-white/10"
+                className="group relative animate-fade-up rounded-3xl border border-white/10 bg-white/5 p-5 pt-9 transition duration-300 hover:-translate-y-1.5 hover:border-indigo-400/40 hover:bg-white/10"
               >
                 <div className="absolute -top-5 left-5 grid size-14 place-items-center rounded-2xl border border-white/10 bg-slate-950 text-2xl shadow-lg transition duration-300 group-hover:rotate-6 group-hover:scale-110">
                   {s.icon}
@@ -116,11 +134,11 @@ export default async function Home() {
 
       {/* CTA */}
       {!session && (
-        <section className="relative overflow-hidden rounded-3xl border border-white/10 bg-linear-to-r from-indigo-600/40 via-fuchsia-600/30 to-cyan-500/30 bg-size-[200%_200%] p-10 text-center motion-safe:animate-gradient">
-          <h2 className="text-3xl font-bold">Your seat at {APP_NAME} is waiting</h2>
-          <p className="mx-auto mt-2 max-w-md text-slate-300">Create a free account in under a minute and start with your first course today.</p>
+        <section className="rounded-3xl border border-white/10 bg-linear-to-r from-indigo-600/40 via-fuchsia-600/30 to-cyan-500/30 bg-size-[200%_200%] p-10 text-center motion-safe:animate-gradient">
+          <h2 className="text-3xl font-bold">Ready to start your first project?</h2>
+          <p className="mx-auto mt-2 max-w-md text-slate-200">Join {APP_NAME} for free and pick your first course today.</p>
           <Link href="/register" className="mt-6 inline-block rounded-xl bg-white px-6 py-3 font-semibold text-slate-900 transition hover:-translate-y-0.5 hover:bg-indigo-100 active:scale-95">
-            Create your account
+            Join NextCollege
           </Link>
         </section>
       )}

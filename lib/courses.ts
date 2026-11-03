@@ -1,29 +1,44 @@
 export const tracks = ["Frontend", "Backend", "Database", "Tools"] as const;
 export type Track = (typeof tracks)[number];
-export type Level = "Beginner" | "Intermediate" | "Advanced";
+export type Level = "Starter" | "Getting there" | "Challenge";
 
 export type Course = {
+  slug: string;
   name: string;
-  tag: string;
+  emoji: string;
   track: Track;
   level: Level;
-  lessons: number;
-  hours: number;
   blurb: string;
+  project: string;
+  lessons: string[];
   gradient: string;
 };
 
 export const courses: Course[] = [
-  { name: "HTML5", tag: "HTML", track: "Frontend", level: "Beginner", lessons: 18, hours: 6, blurb: "Structure real web pages with semantic, accessible markup.", gradient: "from-orange-500 to-red-500" },
-  { name: "CSS3", tag: "CSS", track: "Frontend", level: "Beginner", lessons: 22, hours: 8, blurb: "Layouts, flexbox, grid and animations that feel alive.", gradient: "from-sky-500 to-blue-600" },
-  { name: "Tailwind CSS", tag: "TW", track: "Frontend", level: "Beginner", lessons: 16, hours: 5, blurb: "Style at lightning speed with utility-first design.", gradient: "from-cyan-400 to-teal-500" },
-  { name: "JavaScript", tag: "JS", track: "Frontend", level: "Intermediate", lessons: 34, hours: 14, blurb: "The language of the web: logic, DOM, async and more.", gradient: "from-amber-400 to-orange-500" },
-  { name: "TypeScript", tag: "TS", track: "Frontend", level: "Intermediate", lessons: 24, hours: 9, blurb: "Catch bugs before they ship with type-safe JavaScript.", gradient: "from-blue-500 to-indigo-600" },
-  { name: "React", tag: "React", track: "Frontend", level: "Intermediate", lessons: 30, hours: 12, blurb: "Build interactive UIs from small, reusable components.", gradient: "from-cyan-400 to-blue-500" },
-  { name: "Next.js", tag: "Next", track: "Frontend", level: "Advanced", lessons: 28, hours: 12, blurb: "Full-stack React apps with routing, server components and auth.", gradient: "from-slate-500 to-zinc-800" },
-  { name: "Node.js", tag: "Node", track: "Backend", level: "Intermediate", lessons: 26, hours: 10, blurb: "Run JavaScript on the server and build fast APIs.", gradient: "from-lime-500 to-green-600" },
-  { name: "MongoDB", tag: "Mongo", track: "Database", level: "Intermediate", lessons: 20, hours: 7, blurb: "Store flexible documents in a modern NoSQL database.", gradient: "from-green-500 to-emerald-700" },
-  { name: "Supabase", tag: "Supa", track: "Database", level: "Intermediate", lessons: 18, hours: 7, blurb: "Postgres, auth and storage without running a server.", gradient: "from-emerald-400 to-green-600" },
-  { name: "PostgreSQL", tag: "SQL", track: "Database", level: "Advanced", lessons: 24, hours: 10, blurb: "Model relational data and write powerful queries.", gradient: "from-indigo-500 to-blue-700" },
-  { name: "Git & GitHub", tag: "Git", track: "Tools", level: "Beginner", lessons: 12, hours: 4, blurb: "Version your code, collaborate and deploy with confidence.", gradient: "from-rose-500 to-orange-600" },
+  { slug: "html", name: "HTML5", emoji: "🧱", track: "Frontend", level: "Starter", blurb: "Build your very first web page from scratch.", project: "A page all about you", gradient: "from-orange-400 to-rose-400",
+    lessons: ["What is HTML?", "Headings, text and links", "Adding images", "Lists and tables", "Put it all together"] },
+  { slug: "css", name: "CSS3", emoji: "🎨", track: "Frontend", level: "Starter", blurb: "Add colors, fonts and layout so your page looks great.", project: "Style your About Me page", gradient: "from-sky-400 to-indigo-400",
+    lessons: ["Colors and fonts", "The box model", "Flexbox basics", "Grid layouts", "Simple animations"] },
+  { slug: "tailwind", name: "Tailwind CSS", emoji: "💨", track: "Frontend", level: "Getting there", blurb: "Style faster using ready-made classes.", project: "A friendly landing page", gradient: "from-cyan-300 to-teal-400",
+    lessons: ["Why Tailwind?", "Spacing and colors", "Responsive design", "Hover effects", "Build a landing page"] },
+  { slug: "javascript", name: "JavaScript", emoji: "⚡", track: "Frontend", level: "Getting there", blurb: "Make your pages react to clicks and typing.", project: "A tiny to-do list", gradient: "from-yellow-300 to-orange-400",
+    lessons: ["Variables and types", "Functions", "Arrays and loops", "The DOM", "Events and clicks"] },
+  { slug: "typescript", name: "TypeScript", emoji: "🛡️", track: "Frontend", level: "Getting there", blurb: "JavaScript with safety nets that catch mistakes early.", project: "Add types to your to-do list", gradient: "from-blue-400 to-indigo-500",
+    lessons: ["Why types?", "Basic types", "Interfaces", "Functions with types", "Convert a JS project"] },
+  { slug: "react", name: "React", emoji: "⚛️", track: "Frontend", level: "Challenge", blurb: "Build pages out of small, reusable pieces.", project: "A mini student profile card", gradient: "from-cyan-300 to-blue-400",
+    lessons: ["Components", "Props", "State", "Lists and keys", "Build a small app"] },
+  { slug: "nextjs", name: "Next.js", emoji: "🚀", track: "Frontend", level: "Challenge", blurb: "Turn your React ideas into a real website.", project: "A class notice board", gradient: "from-violet-400 to-fuchsia-400",
+    lessons: ["Pages and routing", "Server and client", "Fetching data", "Forms and actions", "Put it online"] },
+  { slug: "nodejs", name: "Node.js", emoji: "🔧", track: "Backend", level: "Getting there", blurb: "Write code that runs on a server.", project: "A simple quotes API", gradient: "from-lime-300 to-green-400",
+    lessons: ["What is Node?", "Modules and npm", "Make a server", "Routes", "Build a small API"] },
+  { slug: "mongodb", name: "MongoDB", emoji: "🍃", track: "Database", level: "Getting there", blurb: "Save information as flexible documents.", project: "A reading list saver", gradient: "from-green-300 to-emerald-500",
+    lessons: ["Databases 101", "Documents and collections", "Create and read", "Update and delete", "Connect to an app"] },
+  { slug: "supabase", name: "Supabase", emoji: "🔋", track: "Database", level: "Getting there", blurb: "A friendly database with login built in.", project: "A class guestbook", gradient: "from-emerald-300 to-teal-400",
+    lessons: ["What is Supabase?", "Tables", "Reading data", "Sign up and log in", "Build a guestbook"] },
+  { slug: "postgresql", name: "PostgreSQL", emoji: "🐘", track: "Database", level: "Challenge", blurb: "Organize data in tables and ask it questions.", project: "A school library tracker", gradient: "from-indigo-300 to-blue-500",
+    lessons: ["Tables and rows", "SELECT basics", "Filtering and sorting", "Joins", "Design a small database"] },
+  { slug: "git", name: "Git & GitHub", emoji: "🌿", track: "Tools", level: "Starter", blurb: "Save your work and share it with others.", project: "Upload your first project", gradient: "from-rose-300 to-orange-400",
+    lessons: ["What is Git?", "Commit your work", "Branches", "GitHub basics", "Push a project"] },
 ];
+
+export const getCourse = (slug: string) => courses.find((c) => c.slug === slug);
