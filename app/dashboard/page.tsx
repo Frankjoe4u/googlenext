@@ -36,8 +36,8 @@ export default async function Dashboard() {
   return (
     <div className="space-y-10">
       {/* Welcome */}
-      <section className="flex animate-fade-up flex-wrap items-center gap-5">
-        <Link href="/profile" className="relative size-20 shrink-0 transition hover:scale-105" aria-label="Open my profile">
+      <section className="flex animate-fade-up items-center gap-4">
+        <Link href="/profile" className="relative size-16 shrink-0 transition hover:scale-105 sm:size-20" aria-label="Open my profile">
           <div className="absolute inset-0 animate-spin-slow rounded-full bg-[conic-gradient(from_0deg,#6366f1,#d946ef,#22d3ee,#6366f1)]" />
           <div className="absolute inset-0.75 overflow-hidden rounded-full bg-slate-950">
             {u.image ? (
@@ -48,16 +48,11 @@ export default async function Dashboard() {
             )}
           </div>
         </Link>
-        <div className="min-w-0 flex-1">
-          <p className="w-fit rounded-full bg-indigo-400/15 px-3 py-1 text-xs font-medium text-indigo-300">🎓 NextCollege Student</p>
-          <h1 className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">
-            Hi {firstName}! <span className="inline-block origin-[70%_70%] motion-safe:animate-bob">👋</span>
-          </h1>
-          <p className="text-slate-400">Ready to learn something new today?</p>
+        <div className="min-w-0">
+          <p className="w-fit whitespace-nowrap rounded-full bg-indigo-400/15 px-3 py-1 text-xs font-medium text-indigo-300">🎓 NextCollege Student</p>
+          <h1 className="mt-1.5 truncate text-2xl font-bold tracking-tight sm:text-4xl">Hi {firstName}!</h1>
+          <p className="text-sm text-slate-400">Ready to learn something new today?</p>
         </div>
-        <Link href="/profile" className="rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium transition hover:-translate-y-0.5 hover:bg-white/10 active:scale-95">
-          My profile
-        </Link>
       </section>
 
       {/* Stats */}
